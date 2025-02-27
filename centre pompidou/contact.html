@@ -1,0 +1,1547 @@
+µ<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Centre Pompidou</title>
+    <meta name="description" content="Contactez le Centre Pompidou, musée national d'art moderne au cœur de Paris.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+    /* Styles spécifiques à la page contact */
+    .contact-hero {
+        position: relative;
+        height: 300px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 80px;
+        border-bottom: var(--line-thick) solid var(--color-black);
+    }
+    
+    .contact-hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: var(--z-back);
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: var(--line-medium);
+        background-color: var(--color-black);
+    }
+    
+    .contact-hero-content {
+        position: relative;
+        z-index: var(--z-normal);
+        background-color: rgba(255, 255, 255, 0.9);
+        max-width: 800px;
+        padding: var(--spacing-md);
+        text-align: center;
+        border: var(--line-medium) solid var(--color-black);
+    }
+    
+    /* Section formulaire interactif */
+    .contact-form-section {
+        padding: var(--spacing-lg) 0;
+        position: relative;
+    }
+    
+    .contact-form-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    @media (max-width: 992px) {
+        .contact-form-container {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    /* Formulaire style Mondrian */
+    .mondrian-form {
+        background-color: var(--color-white);
+        padding: var(--spacing-lg);
+        border: var(--line-thin) solid var(--color-black);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .mondrian-form::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--line-medium);
+        background-color: var(--color-red-accessible);
+    }
+    
+    .mondrian-form-step {
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+    
+    .mondrian-form-step.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .mondrian-form-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: minmax(50px, auto);
+        gap: var(--line-thin);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .form-field {
+        position: relative;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .form-field-small {
+        grid-column: span 6;
+    }
+    
+    .form-field-medium {
+        grid-column: span 8;
+    }
+    
+    .form-field-large {
+        grid-column: span 12;
+    }
+    
+    .form-field label {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+        font-weight: 600;
+        transition: color 0.3s;
+        position: relative;
+    }
+    
+    /* Astérisque pour les champs obligatoires */
+    .required-field label::after {
+        content: ' *';
+        color: var(--color-red-accessible);
+    }
+    
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+        width: 100%;
+        padding: 12px 15px;
+        border: var(--line-thin) solid var(--color-black);
+        font-family: var(--font-primary);
+        font-size: 1rem;
+        transition: all 0.3s;
+        position: relative;
+        background-color: var(--color-white);
+    }
+    
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 55, 179, 0.3);
+    }
+    
+    /* Animation des bordures à la Mondrian */
+    .form-field input, 
+    .form-field textarea, 
+    .form-field select {
+        border-left-width: 0;
+        border-right-width: 0;
+        border-top-width: 0;
+    }
+    
+    .form-field::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        width: 0;
+        transition: width 0.5s;
+    }
+    
+    .form-field:nth-child(5n+1)::after {
+        background-color: var(--color-red-accessible);
+    }
+    
+    .form-field:nth-child(5n+2)::after {
+        background-color: var(--color-blue);
+    }
+    
+    .form-field:nth-child(5n+3)::after {
+        background-color: var(--color-yellow-dark);
+    }
+    
+    .form-field:nth-child(5n+4)::after {
+        background-color: var(--color-purple);
+    }
+    
+    .form-field:nth-child(5n+5)::after {
+        background-color: var(--color-green);
+    }
+    
+    .form-field.focus::after {
+        width: 100%;
+    }
+    
+    /* État validé */
+    .form-field.valid input,
+    .form-field.valid textarea,
+    .form-field.valid select {
+        border-color: var(--color-green);
+    }
+    
+    /* État d'erreur */
+    .form-field.error input,
+    .form-field.error textarea,
+    .form-field.error select {
+        border-color: var(--color-red-accessible);
+    }
+    
+    .error-message {
+        color: var(--color-red-accessible);
+        font-size: 0.85rem;
+        margin-top: 5px;
+        display: none;
+        padding: 5px 10px;
+        background-color: rgba(214, 0, 28, 0.1);
+        border-left: 3px solid var(--color-red-accessible);
+    }
+    
+    .form-field.error .error-message {
+        display: block;
+        animation: fadeIn 0.3s;
+    }
+    
+    /* Informations supplémentaires pour les champs */
+    .field-hint {
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 5px;
+    }
+    
+    /* Zone pour annoncer les erreurs aux lecteurs d'écran */
+    .screen-reader-feedback {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+    
+    /* Boutons de navigation du formulaire */
+    .form-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: var(--spacing-md);
+    }
+    
+    .prev-step {
+        background-color: var(--color-white);
+        color: var(--color-black);
+        border: var(--line-thin) solid var(--color-black);
+    }
+    
+    /* Indicateur d'étape */
+    .step-indicator {
+        display: flex;
+        justify-content: center;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .step-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #ccc;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+    }
+    
+    /* Étiquette accessible pour les indicateurs d'étape */
+    .step-dot span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+    
+    .step-dot.active {
+        background-color: var(--color-blue);
+        transform: scale(1.3);
+    }
+    
+    .step-dot:nth-child(3n+1).active {
+        background-color: var(--color-red-accessible);
+    }
+    
+    .step-dot:nth-child(3n+2).active {
+        background-color: var(--color-blue);
+    }
+    
+    .step-dot:nth-child(3n+3).active {
+        background-color: var(--color-green);
+    }
+    
+    /* Animation de chargement */
+    .submit-loader {
+        display: none;
+        position: relative;
+        height: 40px;
+        width: 100%;
+        text-align: center;
+        margin-top: var(--spacing-md);
+    }
+    
+    .loader-active .submit-loader {
+        display: block;
+    }
+    
+    .submit-loader .mondrian-loader {
+        display: inline-grid;
+        grid-template-columns: repeat(3, 10px);
+        grid-template-rows: repeat(3, 10px);
+        gap: 2px;
+        background-color: var(--color-black);
+        animation: rotate 2s infinite linear;
+    }
+    
+    .mondrian-loader-cell {
+        background-color: var(--color-white);
+    }
+    
+    .mondrian-loader-cell:nth-child(1) {
+        background-color: var(--color-red-accessible);
+    }
+    
+    .mondrian-loader-cell:nth-child(5) {
+        background-color: var(--color-blue);
+    }
+    
+    .mondrian-loader-cell:nth-child(9) {
+        background-color: var(--color-yellow-dark);
+    }
+    
+    @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    /* Animation de succès */
+    .form-success-message {
+        display: none;
+        text-align: center;
+        padding: var(--spacing-lg);
+        background-color: rgba(0, 110, 51, 0.1);
+        border: var(--line-thin) solid var(--color-green);
+        margin-top: var(--spacing-md);
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.5s;
+    }
+    
+    .form-success-message.show {
+        display: block;
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    .success-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto var(--spacing-md);
+        position: relative;
+    }
+    
+    .success-icon::before,
+    .success-icon::after {
+        content: '';
+        position: absolute;
+        background-color: var(--color-green);
+    }
+    
+    .success-icon::before {
+        width: 20px;
+        height: 5px;
+        left: 10px;
+        top: 30px;
+        transform: rotate(45deg);
+    }
+    
+    .success-icon::after {
+        width: 40px;
+        height: 5px;
+        left: 20px;
+        top: 25px;
+        transform: rotate(-45deg);
+        transform-origin: left center;
+    }
+    
+    /* Informations de contact */
+    .contact-info {
+        background-color: var(--color-white);
+        border: var(--line-thin) solid var(--color-black);
+        padding: var(--spacing-lg);
+        position: relative;
+    }
+    
+    .contact-info::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--line-medium);
+        background-color: var(--color-blue);
+    }
+    
+    .contact-method {
+        margin-bottom: var(--spacing-md);
+        position: relative;
+        padding-left: 40px;
+    }
+    
+    .contact-method-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        background-color: var(--color-white);
+        border: var(--line-thin) solid var(--color-black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contact-method-icon::before,
+    .contact-method-icon::after {
+        content: '';
+        position: absolute;
+        background-color: var(--color-black);
+    }
+    
+    /* Icône téléphone */
+    .phone-icon::before {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: var(--line-thin) solid var(--color-black);
+        background: transparent;
+    }
+    
+    /* Icône email */
+    .email-icon::before {
+        width: 18px;
+        height: 12px;
+        border: var(--line-thin) solid var(--color-black);
+        background: transparent;
+    }
+    
+    /* Icône adresse */
+    .address-icon::before {
+        width: 15px;
+        height: 15px;
+        background-color: var(--color-red-accessible);
+    }
+    
+    /* Carte mondrian */
+    .mondrian-map {
+        height: 300px;
+        margin-top: var(--spacing-md);
+        border: var(--line-thin) solid var(--color-black);
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: var(--line-thin);
+        background-color: var(--color-black);
+    }
+    
+    .map-cell {
+        background-color: var(--color-white);
+        position: relative;
+    }
+    
+    .map-cell:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    
+    .map-cell:nth-child(2) {
+        background-color: var(--color-blue);
+    }
+    
+    .map-cell:nth-child(4) {
+        background-color: var(--color-red-accessible);
+    }
+    
+    .map-cell:nth-child(7) {
+        background-color: var(--color-yellow-dark);
+    }
+    
+    .map-marker {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+    }
+    
+    .map-marker::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-red-accessible);
+        border-radius: 50% 50% 0 50%;
+        transform: rotate(45deg);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes colorPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    
+    /* Accessibilité */
+    .reduced-motion .mondrian-form-step {
+        transition: none;
+    }
+    
+    .reduced-motion .form-field::after {
+        transition: none;
+    }
+    
+    .reduced-motion .floating-label {
+        transition: none;
+    }
+    
+    .reduced-motion .submit-loader .mondrian-loader {
+        animation: none;
+    }
+    
+    /* Styles pour les préférences de réduction de mouvement */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.001s !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001s !important;
+        }
+    }
+    
+    /* Classes utilitaires */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+    
+    /* Styles pour l'animation de secousse des champs en erreur */
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    
+    .shake {
+        animation: shake 0.6s;
+    }
+    </style>
+</head>
+<body>
+    <!-- Liens d'évitement pour l'accessibilité -->
+    <nav class="skip-links" aria-label="Liens d'évitement">
+        <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+        <a href="#nav-main" class="skip-link">Aller à la navigation</a>
+        <a href="#contact-form" class="skip-link">Aller au formulaire de contact</a>
+        <a href="#footer" class="skip-link">Aller au pied de page</a>
+    </nav>
+
+    <header role="banner">
+        <div class="container header-inner">
+            <!-- Logo avec inspiration Mondrian -->
+            <div class="logo-container">
+                <a href="index.html" class="logo-mondrian" aria-label="Accueil du Centre Pompidou">
+                    <!-- Grille visuelle inspirée par Mondrian pour le logo -->
+                    <div class="logo-grid" aria-hidden="true">
+                        <div class="logo-grid-cell red"></div>
+                        <div class="logo-grid-cell"></div>
+                        <div class="logo-grid-cell blue"></div>
+                        <div class="logo-grid-cell"></div>
+                        <div class="logo-grid-cell yellow"></div>
+                        <div class="logo-grid-cell"></div>
+                        <div class="logo-grid-cell purple"></div>
+                        <div class="logo-grid-cell"></div>
+                        <div class="logo-grid-cell green"></div>
+                    </div>
+                    <span>Centre Pompidou</span>
+                </a>
+            </div>
+
+            <!-- Bouton menu pour mobile avec état accessible -->
+            <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="nav-main" aria-label="Menu principal">
+                <span class="burger-icon" aria-hidden="true"></span>
+            </button>
+
+            <!-- Navigation principale simplifiée -->
+            <nav id="nav-main" role="navigation" aria-label="Navigation principale">
+                <ul>
+                    <li><a href="index.html#expositions">Expositions</a></li>
+                    <li><a href="index.html#collections">Collections</a></li>
+                    <li><a href="index.html#architecture">Architecture</a></li>
+                    <li><a href="index.html#billetterie">Billetterie</a></li>
+                    <li><a href="index.html#accessibilite">Accessibilité</a></li>
+                    <li><a href="contact.html" aria-current="page">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" role="main" tabindex="-1">
+        <!-- En-tête de la page contact -->
+        <section class="contact-hero">
+            <!-- Grille d'arrière-plan inspirée de Mondrian -->
+            <div class="contact-hero-bg" aria-hidden="true">
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell blue"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell purple"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell green"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell red"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell orange"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell blue"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell yellow"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell purple"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell blue"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell yellow"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+            </div>
+            
+            <!-- Contenu de l'en-tête -->
+            <div class="contact-hero-content">
+                <h1 tabindex="0">Contactez-nous</h1>
+                <p tabindex="0">Pour toute question concernant le Centre Pompidou, nos expositions ou services, utilisez notre formulaire de contact ou nos coordonnées directes.</p>
+            </div>
+        </section>
+
+        <!-- Section formulaire de contact -->
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="contact-form-container">
+                    <!-- Formulaire de contact animé -->
+                    <div class="mondrian-form">
+                        <h2 class="section-title-mondrian red" tabindex="0">Formulaire de contact</h2>
+                        
+                        <!-- Information pour les champs obligatoires -->
+                        <p class="required-fields-info" id="required-fields-info">Les champs marqués d'un astérisque (*) sont obligatoires.</p>
+                        
+                        <!-- Indicateur d'étape avec texte caché pour les lecteurs d'écran -->
+                        <div class="step-indicator" role="tablist" aria-label="Progression du formulaire en 3 étapes">
+                            <button class="step-dot active" role="tab" aria-selected="true" aria-controls="step1" data-step="1" id="step1-tab">
+                                <span>Étape 1 sur 3 : Vos informations</span>
+                            </button>
+                            <button class="step-dot" role="tab" aria-selected="false" aria-controls="step2" data-step="2" id="step2-tab">
+                                <span>Étape 2 sur 3 : Votre demande</span>
+                            </button>
+                            <button class="step-dot" role="tab" aria-selected="false" aria-controls="step3" data-step="3" id="step3-tab">
+                                <span>Étape 3 sur 3 : Confirmation</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Région dynamique pour les annonces des lecteurs d'écran -->
+                        <div id="form-announcer" class="sr-only" aria-live="assertive"></div>
+                        
+                        <form id="contactForm" novalidate aria-describedby="required-fields-info">
+                            <!-- Étape 1: Informations personnelles -->
+                            <div id="step1" class="mondrian-form-step active" role="tabpanel" aria-labelledby="step1-tab">
+                                <h3 tabindex="0">Vos informations</h3>
+                                
+                                <div class="mondrian-form-grid">
+                                    <div class="form-field form-field-small required-field">
+                                        <label for="firstname" id="firstname-label">Prénom</label>
+                                        <input type="text" id="firstname" name="firstname" required 
+                                               aria-required="true"
+                                               aria-labelledby="firstname-label" 
+                                               aria-describedby="firstname-error firstname-hint">
+                                        <div class="error-message" id="firstname-error"></div>
+                                        <div class="field-hint" id="firstname-hint">Entrez votre prénom</div>
+                                    </div>
+                                    
+                                    <div class="form-field form-field-small required-field">
+                                        <label for="lastname" id="lastname-label">Nom</label>
+                                        <input type="text" id="lastname" name="lastname" required 
+                                               aria-required="true"
+                                               aria-labelledby="lastname-label" 
+                                               aria-describedby="lastname-error lastname-hint">
+                                        <div class="error-message" id="lastname-error"></div>
+                                        <div class="field-hint" id="lastname-hint">Entrez votre nom de famille</div>
+                                    </div>
+                                    
+                                    <div class="form-field form-field-medium required-field">
+                                        <label for="email" id="email-label">Email</label>
+                                        <input type="email" id="email" name="email" required 
+                                               aria-required="true"
+                                               aria-labelledby="email-label" 
+                                               aria-describedby="email-error email-hint">
+                                        <div class="error-message" id="email-error"></div>
+                                        <div class="field-hint" id="email-hint">Nous utiliserons cette adresse pour vous répondre</div>
+                                    </div>
+                                    
+                                    <div class="form-field form-field-small">
+                                        <label for="phone" id="phone-label">Téléphone (facultatif)</label>
+                                        <input type="tel" id="phone" name="phone" 
+                                               aria-labelledby="phone-label" 
+                                               aria-describedby="phone-error phone-hint">
+                                        <div class="error-message" id="phone-error"></div>
+                                        <div class="field-hint" id="phone-hint">Format : +33 1 23 45 67 89</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-navigation">
+                                    <div></div> <!-- Espace vide pour l'alignement -->
+                                    <button type="button" class="btn-primary next-step" data-step="1">Continuer</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Étape 2: Sujet et détails -->
+                            <div id="step2" class="mondrian-form-step" role="tabpanel" aria-labelledby="step2-tab" hidden>
+                                <h3 tabindex="0">Votre demande</h3>
+                                
+                                <div class="mondrian-form-grid">
+                                    <div class="form-field form-field-large required-field">
+                                        <label for="subject" id="subject-label">Sujet</label>
+                                        <select id="subject" name="subject" required 
+                                                aria-required="true"
+                                                aria-labelledby="subject-label" 
+                                                aria-describedby="subject-error subject-hint">
+                                            <option value="">Sélectionnez un sujet</option>
+                                            <option value="information">Demande d'information</option>
+                                            <option value="reservation">Réservation de groupe</option>
+                                            <option value="accessibility">Accessibilité</option>
+                                            <option value="partnership">Partenariat</option>
+                                            <option value="feedback">Commentaire ou suggestion</option>
+                                            <option value="other">Autre</option>
+                                        </select>
+                                        <div class="error-message" id="subject-error"></div>
+                                        <div class="field-hint" id="subject-hint">Choisissez la catégorie qui correspond le mieux à votre demande</div>
+                                    </div>
+                                    
+                                    <div class="form-field form-field-large required-field">
+                                        <label for="message" id="message-label">Message</label>
+                                        <textarea id="message" name="message" rows="5" required 
+                                                  aria-required="true"
+                                                  aria-labelledby="message-label" 
+                                                  aria-describedby="message-error message-hint"></textarea>
+                                        <div class="error-message" id="message-error"></div>
+                                        <div class="field-hint" id="message-hint">Détaillez votre demande pour que nous puissions mieux vous aider</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-navigation">
+                                    <button type="button" class="btn-outline prev-step" data-step="2">Retour</button>
+                                    <button type="button" class="btn-primary next-step" data-step="2">Continuer</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Étape 3: Confirmation -->
+                            <div id="step3" class="mondrian-form-step" role="tabpanel" aria-labelledby="step3-tab" hidden>
+                                <h3 tabindex="0">Confirmer votre message</h3>
+                                
+                                <div class="mondrian-form-grid">
+                                    <div class="form-field form-field-large">
+                                        <div class="confirmation-summary" aria-labelledby="summary-heading">
+                                            <h4 id="summary-heading">Récapitulatif de votre demande</h4>
+                                            <p><strong>Nom complet :</strong> <span id="summary-name"></span></p>
+                                            <p><strong>Email :</strong> <span id="summary-email"></span></p>
+                                            <p><strong>Téléphone :</strong> <span id="summary-phone">Non renseigné</span></p>
+                                            <p><strong>Sujet :</strong> <span id="summary-subject"></span></p>
+                                            <p><strong>Message :</strong> <span id="summary-message"></span></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-field form-field-large required-field">
+                                        <div class="consent-check">
+                                            <input type="checkbox" id="consent" name="consent" required 
+                                                   aria-required="true"
+                                                   aria-describedby="consent-error">
+                                            <label for="consent">J'accepte que mes données soient utilisées pour traiter ma demande. Pour en savoir plus sur la gestion de vos données et vos droits, consultez notre politique de confidentialité.</label>
+                                            <div class="error-message" id="consent-error"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-navigation">
+                                    <button type="button" class="btn-outline prev-step" data-step="3">Retour</button>
+                                    <button type="submit" class="btn-primary submit-btn">Envoyer</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Loader animé style Mondrian -->
+                            <div class="submit-loader" aria-hidden="true">
+                                <div class="mondrian-loader">
+                                    <div class="mondrian-loader-cell"></div>
+                                    <div class="mondrian-loader-cell"></div>
+                                    <div class="mondrian-loader-cell"></div>
+                                    <div class="mondrian-loader-cell"></div>
+                                    <div class="mondrian-loader-cell"></div>
+                                    <div class="mondrian-loader-cell"></div>
+                                    <div class="mondrian-loader-cell"></div>
+                                    <div class="mondrian-loader-cell"></div>
+                                    <div class="mondrian-loader-cell"></div>
+                                </div>
+                                <p>Envoi en cours...</p>
+                            </div>
+                            
+                            <!-- Message de succès -->
+                            <div class="form-success-message" aria-live="assertive" role="status">
+                                <div class="success-icon" aria-hidden="true"></div>
+                                <h3>Message envoyé avec succès !</h3>
+                                <p>Nous vous répondrons dans les meilleurs délais.</p>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Informations de contact -->
+                    <div class="contact-info">
+                        <h2 class="section-title-mondrian blue" tabindex="0">Nous contacter directement</h2>
+                        
+                        <div class="contact-method">
+                            <div class="contact-method-icon phone-icon" aria-hidden="true"></div>
+                            <h3>Téléphone</h3>
+                            <p><a href="tel:+33144781233">01 44 78 12 33</a></p>
+                            <p>Du lundi au vendredi, 10h-18h</p>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-method-icon email-icon" aria-hidden="true"></div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:contact@centrepompidou.fr">contact@centrepompidou.fr</a></p>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-method-icon address-icon" aria-hidden="true"></div>
+                            <h3>Adresse</h3>
+                            <address>
+                                Centre Pompidou<br>
+                                Place Georges-Pompidou<br>
+                                75004 Paris, France
+                            </address>
+                        </div>
+                        
+                        <!-- Carte stylisée Mondrian -->
+                        <div class="mondrian-map" aria-label="Représentation stylisée de l'emplacement du Centre Pompidou">
+                            <div class="map-cell">
+                                <div class="map-marker" aria-hidden="true"></div>
+                            </div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                            <div class="map-cell"></div>
+                        </div>
+                        
+                        <a href="https://maps.google.com/?q=Centre+Pompidou+Paris" class="btn-blue" target="_blank" rel="noopener noreferrer">Voir sur Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-mondrian-grid">
+                <div class="footer-block">
+                    <h3 tabindex="0">Centre Pompidou</h3>
+                    <address tabindex="0">
+                        Place Georges-Pompidou<br>
+                        75004 Paris<br>
+                        <a href="tel:+33144781233" tabindex="0">01 44 78 12 33</a>
+                    </address>
+                </div>
+                
+                <div class="footer-block">
+                    <h3 tabindex="0">Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html#expositions" tabindex="0">Expositions</a></li>
+                        <li><a href="index.html#collections" tabindex="0">Collections</a></li>
+                        <li><a href="index.html#architecture" tabindex="0">Architecture</a></li>
+                        <li><a href="index.html#billetterie" tabindex="0">Billetterie</a></li>
+                        <li><a href="index.html#programme" tabindex="0">Programme culturel</a></li>
+                        <li><a href="index.html#accessibilite" tabindex="0">Accessibilité</a></li>
+                        <li><a href="contact.html" tabindex="0">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-block">
+                    <h3 tabindex="0">Ressources</h3>
+                    <ul>
+                        <li><a href="#" tabindex="0">Espace presse</a></li>
+                        <li><a href="#" tabindex="0">Mentions légales</a></li>
+                        <li><a href="#" tabindex="0">Politique de confidentialité</a></li>
+                        <li><a href="#" tabindex="0">Plan du site</a></li>
+                        <li><a href="#" tabindex="0">Recrutement</a></li>
+                        <li><a href="#" tabindex="0">Mécénat et partenariats</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-block">
+                    <h3 tabindex="0">Suivez-nous</h3>
+                    <ul class="social-links">
+                        <li><a href="#" aria-label="Centre Pompidou sur Instagram" tabindex="0">Instagram</a></li>
+                        <li><a href="#" aria-label="Centre Pompidou sur Facebook" tabindex="0">Facebook</a></li>
+                        <li><a href="#" aria-label="Centre Pompidou sur Twitter" tabindex="0">Twitter</a></li>
+                        <li><a href="#" aria-label="Centre Pompidou sur YouTube" tabindex="0">YouTube</a></li>
+                    </ul>
+                    
+                    <h3 tabindex="0" class="mt-lg">Newsletter</h3>
+                    <p tabindex="0">Recevez notre programme d'expositions et d'événements</p>
+                    <form class="newsletter-form">
+                        <label for="news-email" class="sr-only">Votre email</label>
+                        <input type="email" id="news-email" placeholder="Votre email" required aria-required="true">
+                        <button type="submit" class="btn-primary">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p tabindex="0">&copy; 2025 Centre Pompidou - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Retour au sommet de la page -->
+    <a href="#top" class="back-to-top" aria-label="Retour en haut de la page" tabindex="0">
+        <span aria-hidden="true" class="arrow-up-icon"></span>
+    </a>
+
+    <!-- JavaScript pour les animations et l'interactivité -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Vérifier les préférences d'accessibilité
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            document.documentElement.classList.add('reduced-motion');
+        }
+
+        // Initialiser les animations de la grille Mondrian
+        initMondrianGrid();
+        
+        // Gestion du formulaire multi-étapes
+        initFormSteps();
+        
+        // Animation des champs du formulaire
+        initFormFieldAnimations();
+        
+        // Validation du formulaire
+        initFormValidation();
+        
+        // Menu mobile
+        initMobileMenu();
+        
+        // Bouton de retour en haut
+        initBackToTop();
+    });
+
+    /**
+     * Initialisation des animations de grille Mondrian
+     */
+    function initMondrianGrid() {
+        const mondrianCells = document.querySelectorAll('.contact-hero-bg .mondrian-cell');
+        
+        mondrianCells.forEach((cell, index) => {
+            // Retarder l'apparition pour une animation séquentielle
+            setTimeout(() => {
+                cell.style.opacity = '0';
+                cell.style.transform = 'scale(0.9)';
+                
+                // Appliquer la transition seulement si la réduction de mouvement n'est pas activée
+                if (!document.documentElement.classList.contains('reduced-motion')) {
+                    cell.style.transition = 'opacity 0.7s ease-out, transform 0.7s ease-out';
+                }
+                
+                // Animer l'apparition
+                setTimeout(() => {
+                    cell.style.opacity = '1';
+                    cell.style.transform = 'scale(1)';
+                }, 50);
+            }, index * 50);
+        });
+    }
+
+    /**
+     * Initialisation des étapes du formulaire
+     */
+    function initFormSteps() {
+        const nextButtons = document.querySelectorAll('.next-step');
+        const prevButtons = document.querySelectorAll('.prev-step');
+        const stepDots = document.querySelectorAll('.step-dot');
+        const announcer = document.getElementById('form-announcer');
+        
+        // Progression vers l'étape suivante
+        nextButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const currentStep = parseInt(this.getAttribute('data-step'));
+                const currentStepElement = document.getElementById('step' + currentStep);
+                const nextStepElement = document.getElementById('step' + (currentStep + 1));
+                
+                // Valider l'étape actuelle avant de progresser
+                if (!validateStep(currentStep)) {
+                    // Annoncer les erreurs aux lecteurs d'écran
+                    const errors = currentStepElement.querySelectorAll('.form-field.error');
+                    if (errors.length > 0) {
+                        // Construire un message d'erreur détaillé
+                        let errorMessage = `Veuillez corriger les ${errors.length} erreurs suivantes : `;
+                        errors.forEach((error, index) => {
+                            const fieldName = error.querySelector('label').textContent;
+                            const errorText = error.querySelector('.error-message').textContent;
+                            errorMessage += `${index + 1}. ${fieldName}: ${errorText} `;
+                        });
+                        
+                        // Annoncer l'erreur
+                        announceMessage(errorMessage);
+                        
+                        // Mettre le focus sur le premier champ en erreur
+                        const firstErrorInput = errors[0].querySelector('input, textarea, select');
+                        if (firstErrorInput) {
+                            firstErrorInput.focus();
+                        }
+                    }
+                    return;
+                }
+                
+                // Mettre à jour les étapes
+                currentStepElement.classList.remove('active');
+                currentStepElement.setAttribute('hidden', true);
+                nextStepElement.classList.add('active');
+                nextStepElement.removeAttribute('hidden');
+                
+                // Mettre à jour l'indicateur d'étape
+                updateStepIndicator(currentStep + 1);
+                
+                // Si c'est la dernière étape, préparer le résumé
+                if (currentStep + 1 === 3) {
+                    updateSummary();
+                }
+                
+                // Annoncer le changement d'étape pour les lecteurs d'écran
+                const stepHeading = nextStepElement.querySelector('h3').textContent;
+                announceMessage(`Étape ${currentStep + 1} sur 3 : ${stepHeading}`);
+                
+                // Mettre le focus sur le premier élément interactif de la nouvelle étape
+                const firstInput = nextStepElement.querySelector('input, select, textarea, button');
+                if (firstInput) {
+                    setTimeout(() => {
+                        firstInput.focus();
+                    }, 100);
+                }
+            });
+        });
+        
+        // Retour à l'étape précédente
+        prevButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const currentStep = parseInt(this.getAttribute('data-step'));
+                const currentStepElement = document.getElementById('step' + currentStep);
+                const prevStepElement = document.getElementById('step' + (currentStep - 1));
+                
+                // Mettre à jour les étapes
+                currentStepElement.classList.remove('active');
+                currentStepElement.setAttribute('hidden', true);
+                prevStepElement.classList.add('active');
+                prevStepElement.removeAttribute('hidden');
+                
+                // Mettre à jour l'indicateur d'étape
+                updateStepIndicator(currentStep - 1);
+                
+                // Annoncer le changement d'étape
+                const stepHeading = prevStepElement.querySelector('h3').textContent;
+                announceMessage(`Retour à l'étape ${currentStep - 1} sur 3 : ${stepHeading}`);
+                
+                // Mettre le focus sur le premier élément interactif
+                const firstInput = prevStepElement.querySelector('input, select, textarea');
+                if (firstInput) {
+                    setTimeout(() => {
+                        firstInput.focus();
+                    }, 100);
+                }
+            });
+        });
+        
+        // Navigation par les indicateurs d'étape
+        stepDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const targetStep = parseInt(this.getAttribute('data-step'));
+                const currentStep = getCurrentStep();
+                
+                // Ne pas permettre de sauter des étapes non validées
+                if (targetStep > currentStep && !validateStepsUpTo(currentStep)) {
+                    // Annoncer l'erreur
+                    announceMessage("Veuillez compléter l'étape actuelle avant de continuer.");
+                    return;
+                }
+                
+                // Mettre à jour l'affichage des étapes
+                document.querySelectorAll('.mondrian-form-step').forEach(step => {
+                    step.classList.remove('active');
+                    step.setAttribute('hidden', true);
+                });
+                
+                const targetStepElement = document.getElementById('step' + targetStep);
+                targetStepElement.classList.add('active');
+                targetStepElement.removeAttribute('hidden');
+                
+                // Mettre à jour l'indicateur d'étape
+                updateStepIndicator(targetStep);
+                
+                // Si c'est la dernière étape, préparer le résumé
+                if (targetStep === 3) {
+                    updateSummary();
+                }
+                
+                // Annoncer le changement d'étape
+                const stepHeading = targetStepElement.querySelector('h3').textContent;
+                announceMessage(`Navigation vers l'étape ${targetStep} sur 3 : ${stepHeading}`);
+                
+                // Mettre le focus sur le premier élément interactif
+                const firstInput = targetStepElement.querySelector('input, select, textarea');
+                if (firstInput) {
+                    setTimeout(() => {
+                        firstInput.focus();
+                    }, 100);
+                }
+            });
+        });
+        
+        // Mise à jour de l'indicateur d'étape
+        function updateStepIndicator(step) {
+            stepDots.forEach((dot) => {
+                const dotStep = parseInt(dot.getAttribute('data-step'));
+                const isActive = dotStep === step;
+                
+                dot.classList.toggle('active', isActive);
+                dot.setAttribute('aria-selected', isActive);
+            });
+        }
+        
+        // Obtenir l'étape actuelle
+        function getCurrentStep() {
+            const activeStep = document.querySelector('.mondrian-form-step.active');
+            return parseInt(activeStep.id.replace('step', ''));
+        }
+        
+        // Valider toutes les étapes jusqu'à une étape spécifique
+        function validateStepsUpTo(step) {
+            let isValid = true;
+            for (let i = 1; i <= step; i++) {
+                if (!validateStep(i)) {
+                    isValid = false;
+                }
+            }
+            return isValid;
+        }
+        
+        // Mettre à jour le résumé à l'étape 3
+        function updateSummary() {
+            const firstName = document.getElementById('firstname').value;
+            const lastName = document.getElementById('lastname').value;
+            document.getElementById('summary-name').textContent = firstName + ' ' + lastName;
+            
+            document.getElementById('summary-email').textContent = document.getElementById('email').value;
+            
+            const phone = document.getElementById('phone').value;
+            document.getElementById('summary-phone').textContent = phone ? phone : 'Non renseigné';
+            
+            const subjectSelect = document.getElementById('subject');
+            const subjectText = subjectSelect.options[subjectSelect.selectedIndex].text;
+            document.getElementById('summary-subject').textContent = subjectText;
+            
+            document.getElementById('summary-message').textContent = document.getElementById('message').value;
+        }
+        
+        // Annoncer un message aux lecteurs d'écran
+        function announceMessage(message) {
+            announcer.textContent = message;
+        }
+    }
+
+    /**
+     * Animations des champs du formulaire
+     */
+    function initFormFieldAnimations() {
+        const formFields = document.querySelectorAll('.form-field input, .form-field textarea, .form-field select');
+        
+        formFields.forEach(field => {
+            // Animation au focus
+            field.addEventListener('focus', function() {
+                const formField = this.closest('.form-field');
+                formField.classList.add('focus');
+            });
+            
+            // Retrait de l'animation au blur
+            field.addEventListener('blur', function() {
+                const formField = this.closest('.form-field');
+                formField.classList.remove('focus');
+                
+                // Valider le champ lors de la perte de focus
+                validateField(this);
+            });
+            
+            // Changement de style quand le champ est rempli
+            field.addEventListener('input', function() {
+                const formField = this.closest('.form-field');
+                if (this.value) {
+                    formField.classList.add('filled');
+                    
+                    // Réinitialiser l'état d'erreur lors de la modification
+                    formField.classList.remove('error');
+                    formField.classList.remove('valid');
+                    
+                    // Masquer le message d'erreur
+                    const errorElement = formField.querySelector('.error-message');
+                    if (errorElement) {
+                        errorElement.textContent = '';
+                    }
+                    
+                    // Mettre à jour les attributs ARIA
+                    field.removeAttribute('aria-invalid');
+                } else {
+                    formField.classList.remove('filled');
+                }
+            });
+            
+            // Gestion des touches pour l'accessibilité
+            field.addEventListener('keydown', function(e) {
+                // Validation à l'appui sur Entrée pour certains champs
+                if (e.key === 'Enter' && this.tagName !== 'TEXTAREA') {
+                    validateField(this);
+                    
+                    // Passer au champ suivant si valide
+                    if (!this.closest('.form-field').classList.contains('error')) {
+                        const allFields = Array.from(document.querySelectorAll('input, select, textarea, button'));
+                        const currentIndex = allFields.indexOf(this);
+                        const nextField = allFields[currentIndex + 1];
+                        
+                        if (nextField) {
+                            e.preventDefault();
+                            nextField.focus();
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    /**
+     * Validation du formulaire
+     */
+    function initFormValidation() {
+        const contactForm = document.getElementById('contactForm');
+        const announcer = document.getElementById('form-announcer');
+        
+        // Validation à la soumission du formulaire
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Valider la dernière étape
+            if (!validateStep(3)) {
+                // Annoncer les erreurs
+                const errors = contactForm.querySelectorAll('.form-field.error');
+                if (errors.length > 0) {
+                    let errorMessage = `Veuillez corriger les ${errors.length} erreurs avant d'envoyer le formulaire.`;
+                    announcer.textContent = errorMessage;
+                    
+                    // Mettre le focus sur le premier champ en erreur
+                    const firstErrorInput = errors[0].querySelector('input, textarea, select');
+                    if (firstErrorInput) {
+                        firstErrorInput.focus();
+                    }
+                }
+                return;
+            }
+            
+            // Annoncer que le formulaire est en cours d'envoi
+            announcer.textContent = "Envoi du formulaire en cours, veuillez patienter.";
+            
+            // Simuler l'envoi du formulaire
+            simulateFormSubmission();
+        });
+        
+        // Ajouter la validation à l'événement de changement
+        const formInputs = contactForm.querySelectorAll('input, textarea, select');
+        formInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                validateField(this);
+            });
+        });
+    }
+
+    /**
+     * Valide une étape spécifique du formulaire
+     * @param {number} step - Le numéro de l'étape à valider
+     * @returns {boolean} - Vrai si l'étape est valide, faux sinon
+     */
+    function validateStep(step) {
+        const stepElement = document.getElementById('step' + step);
+        const fields = stepElement.querySelectorAll('input, textarea, select');
+        let isValid = true;
+        
+        fields.forEach(field => {
+            if (!validateField(field)) {
+                isValid = false;
+            }
+        });
+        
+        return isValid;
+    }
+
+    /**
+     * Valide un champ spécifique
+     * @param {HTMLElement} field - Le champ à valider
+     * @returns {boolean} - Vrai si le champ est valide, faux sinon
+     */
+    function validateField(field) {
+        const formField = field.closest('.form-field');
+        const errorElement = formField.querySelector('.error-message');
+        const labelText = formField.querySelector('label').textContent.replace(' *', '');
+        let isValid = true;
+        let errorMessage = '';
+        
+        // Réinitialiser les classes d'erreur
+        formField.classList.remove('error');
+        formField.classList.remove('valid');
+        
+        // Réinitialiser l'attribut ARIA
+        field.removeAttribute('aria-invalid');
+        
+        // Validation de base des champs requis
+        if (field.hasAttribute('required') && !field.value.trim()) {
+            isValid = false;
+            errorMessage = `Le champ ${labelText} est requis.`;
+        } 
+        // Validation spécifique pour l'email
+        else if (field.type === 'email' && field.value) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(field.value)) {
+                isValid = false;
+                errorMessage = `Veuillez entrer une adresse email valide pour ${labelText}.`;
+            }
+        }
+        // Validation spécifique pour le téléphone (si rempli)
+        else if (field.type === 'tel' && field.value) {
+            const phonePattern = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
+            if (!phonePattern.test(field.value)) {
+                isValid = false;
+                errorMessage = `Veuillez entrer un numéro de téléphone valide pour ${labelText}.`;
+            }
+        }
+        // Validation spécifique pour le consentement
+        else if (field.type === 'checkbox' && field.id === 'consent' && !field.checked) {
+            isValid = false;
+            errorMessage = 'Vous devez accepter la politique de confidentialité pour continuer.';
+        }
+        
+        // Mettre à jour l'interface selon la validité
+        if (!isValid) {
+            formField.classList.add('error');
+            field.setAttribute('aria-invalid', 'true');
+            
+            if (errorElement) {
+                errorElement.textContent = errorMessage;
+            }
+            
+            // Animation d'erreur si la réduction de mouvement n'est pas activée
+            if (!document.documentElement.classList.contains('reduced-motion')) {
+                field.classList.add('shake');
+                setTimeout(() => {
+                    field.classList.remove('shake');
+                }, 600);
+            }
+        } else {
+            formField.classList.add('valid');
+            if (errorElement) {
+                errorElement.textContent = '';
+            }
+        }
+        
+        return isValid;
+    }
+
+    /**
+     * Simulation de l'envoi du formulaire avec animation
+     */
+    function simulateFormSubmission() {
+        const form = document.getElementById('contactForm');
+        const submitBtn = form.querySelector('.submit-btn');
+        const successMessage = form.querySelector('.form-success-message');
+        const announcer = document.getElementById('form-announcer');
+        
+        // Désactiver le bouton et afficher le loader
+        submitBtn.disabled = true;
+        form.classList.add('loader-active');
+        
+        // Simuler un délai de traitement
+        setTimeout(() => {
+            // Masquer le loader et afficher le message de succès
+            form.classList.remove('loader-active');
+            
+            // Cacher les étapes du formulaire
+            document.querySelectorAll('.mondrian-form-step').forEach(step => {
+                step.classList.remove('active');
+                step.setAttribute('hidden', true);
+            });
+            
+            // Afficher le message de succès
+            successMessage.classList.add('show');
+            
+            // Annoncer le succès pour les lecteurs d'écran
+            announcer.textContent = "Félicitations ! Votre message a été envoyé avec succès. Nous vous répondrons dans les meilleurs délais.";
+            
+            // Mettre le focus sur le message de succès
+            setTimeout(() => {
+                successMessage.setAttribute('tabindex', '-1');
+                successMessage.focus();
+            }, 100);
+            
+            // Réinitialiser le formulaire après un certain délai
+            setTimeout(() => {
+                form.reset();
+                document.querySelectorAll('.form-field').forEach(field => {
+                    field.classList.remove('valid');
+                    field.classList.remove('filled');
+                    field.classList.remove('error');
+                });
+            }, 2000);
+        }, 2000);
+    }
+
+    /**
+     * Initialisation du menu mobile
+     */
+    function initMobileMenu() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMain = document.getElementById('nav-main');
+        
+        if (menuToggle && navMain) {
+            menuToggle.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !expanded);
+                navMain.classList.toggle('is-open');
+                
+                // Annoncer l'état du menu pour les lecteurs d'écran
+                if (!expanded) {
+                    this.setAttribute('aria-label', 'Fermer le menu principal');
+                } else {
+                    this.setAttribute('aria-label', 'Ouvrir le menu principal');
+                }
+            });
+        }
+    }
+
+    /**
+     * Initialisation du bouton "Retour en haut"
+     */
+    function initBackToTop() {
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        if (backToTopButton) {
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('is-visible');
+                    backToTopButton.setAttribute('aria-hidden', 'false');
+                } else {
+                    backToTopButton.classList.remove('is-visible');
+                    backToTopButton.setAttribute('aria-hidden', 'true');
+                }
+            });
+            
+            // Gestion de l'événement de clic
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Comportement adapté aux préférences de réduction de mouvement
+                if (document.documentElement.classList.contains('reduced-motion')) {
+                    window.scrollTo(0, 0);
+                } else {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Mettre le focus sur le titre principal
+                setTimeout(() => {
+                    document.querySelector('h1').focus();
+                }, 500);
+            });
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre Pompidou - Art moderne et contemporain</title>
+    <meta name="description" content="Le Centre Pompidou, musée national d'art moderne, accueille l'une des plus grandes collections d'art contemporain d'Europe au cœur de Paris.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Liens d'évitement pour l'accessibilité -->
+    <nav class="skip-links" aria-label="Liens d'évitement">
+        <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+        <a href="#nav-main" class="skip-link">Aller à la navigation</a>
+        <a href="#footer" class="skip-link">Aller au pied de page</a>
+    </nav>
+
+    <header role="banner">
+        <div class="container header-inner">
+            <!-- Logo avec inspiration Mondrian -->
+            <div class="logo-container">
+                <a href="/" class="logo-mondrian" aria-label="Accueil du Centre Pompidou">
+                    <!-- Grille visuelle inspirée par Mondrian pour le logo -->
+                    <div class="logo-grid" aria-hidden="true">
+                        <div class="logo-grid-cell red"></div>
+                        <div class="logo-grid-cell"></div>
+                        <div class="logo-grid-cell blue"></div>
+                        <div class="logo-grid-cell"></div>
+                        <div class="logo-grid-cell yellow"></div>
+                        <div class="logo-grid-cell"></div>
+                        <div class="logo-grid-cell purple"></div>
+                        <div class="logo-grid-cell"></div>
+                        <div class="logo-grid-cell green"></div>
+                    </div>
+                    <span>Centre Pompidou</span>
+                </a>
+            </div>
+
+            <!-- Bouton menu pour mobile avec état accessible -->
+            <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="nav-main" aria-label="Menu principal">
+                <span class="burger-icon" aria-hidden="true"></span>
+            </button>
+
+            <!-- Navigation principale simplifiée -->
+            <nav id="nav-main" role="navigation" aria-label="Navigation principale">
+                <ul>
+                    <li><a href="#expositions" tabindex="0">Expositions</a></li>
+                    <li><a href="#collections" tabindex="0">Collections</a></li>
+                    <li><a href="#architecture" tabindex="0">Architecture</a></li>
+                    <li><a href="#billetterie" tabindex="0">Billetterie</a></li>
+                    <li><a href="#accessibilite" tabindex="0">Accessibilité</a></li>
+                    <li><a href="contact.html" tabindex="0">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" role="main" tabindex="-1">
+        <!-- Section héro avec grille Mondrian en fond -->
+        <section class="hero">
+            <!-- Grille d'arrière-plan inspirée de Mondrian -->
+            <div class="hero-mondrian-bg" aria-hidden="true">
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell blue"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell purple"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell green"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell red"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell orange"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell blue"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell yellow"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell purple"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell blue"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell yellow"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell green"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell red"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell orange"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+                <div class="mondrian-cell"></div>
+            </div>
+            
+            <!-- Contenu de la section héro -->
+            <div class="hero-content">
+                <h1 tabindex="0">Centre Pompidou</h1>
+                <p tabindex="0">Explorez l'une des plus importantes collections d'art moderne et contemporain au monde, dans un bâtiment emblématique au cœur de Paris</p>
+                <div class="hero-cta">
+                    <a href="#expositions" class="btn-primary" tabindex="0">Découvrir les expositions</a>
+                    <a href="#billetterie" class="btn-green" tabindex="0">Réserver un billet</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alerte d'information -->
+        <div class="alert-banner" role="alert" aria-live="polite" tabindex="0">
+            <p><strong>Information importante :</strong> Le Centre Pompidou sera exceptionnellement fermé le 1er mai 2025.</p>
+        </div>
+
+        <!-- Section Expositions -->
+        <section id="expositions" class="section-expositions">
+            <div class="container">
+                <h2 class="section-title-mondrian red" tabindex="0">Expositions</h2>
+                
+                <!-- Exposition principale -->
+                <div class="exposition-feature">
+                    <img src="image/frontiere.jpg" alt="Vue de l'exposition 'Frontières de l'Abstraction'" width="800" height="400">
+                    <div class="exposition-info">
+                        <h3 tabindex="0">Frontières de l'Abstraction</h3>
+                        <p tabindex="0">Une exploration des mouvements abstraits du XXe siècle, des pionniers aux artistes contemporains. L'exposition retrace l'évolution de l'abstraction et son influence sur l'art actuel.</p>
+                        <p class="date" tabindex="0">15 mars - 30 juillet 2025</p>
+                        <a href="#" class="btn-primary" tabindex="0">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <!-- Grille d'expositions Mondrian -->
+                <div class="mondrian-grid">
+                    <div class="mondrian-cell-2x1">
+                        <div class="mondrian-card green">
+                            <img src="image/numerique.jpg" alt="Vue de l'exposition Art numérique" width="400" height="250">
+                            <h3 tabindex="0">Art numérique et réalité virtuelle</h3>
+                            <p tabindex="0">Exploration des frontières entre art et technologie</p>
+                            <p class="date" tabindex="0">Jusqu'au 15 juin 2025</p>
+                            <a href="#" class="btn-green" tabindex="0">Explorer</a>
+                        </div>
+                    </div>
+                    <div class="mondrian-cell-1x1 purple-block">
+                        <h3 tabindex="0">Prochainement</h3>
+                        <p tabindex="0">Rétrospective Marcel Duchamp</p>
+                        <p class="date" tabindex="0">À partir du 15 septembre 2025</p>
+                        <a href="#" class="btn-purple" tabindex="0">Être informé</a>
+                    </div>
+                    <div class="mondrian-cell-1x1">
+                        <div class="mondrian-card blue">
+                            <img src="image/image_test.jpg" alt="Vue de l'exposition Photographie documentaire" width="400" height="250">
+                            <h3 tabindex="0">Photographie documentaire</h3>
+                            <p tabindex="0">Regard sur la société à travers l'objectif</p>
+                            <p class="date" tabindex="0">Jusqu'au 20 août 2025</p>
+                            <a href="#" class="btn-blue" tabindex="0">Découvrir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Collections -->
+        <section id="collections" class="section-collections">
+            <div class="container">
+                <h2 class="section-title-mondrian blue" tabindex="0">Collections</h2>
+                
+                <p class="intro-text" tabindex="0">Le Centre Pompidou abrite la plus importante collection d'art moderne et contemporain d'Europe, avec plus de 120 000 œuvres couvrant tous les domaines de la création artistique.</p>
+                
+                <!-- Galerie style Mondrian -->
+                <div class="mondrian-gallery">
+                    <div class="gallery-item">
+                        <img src="image/1900.jpg" alt="Œuvres d'art moderne dans les galeries" width="500" height="350">
+                        <div class="gallery-item-info">
+                            <h3 tabindex="0">Art moderne (1905-1960)</h3>
+                            <p tabindex="0">Des mouvements fondateurs comme le cubisme, le surréalisme et l'expressionnisme.</p>
+                            <a href="#" class="btn-primary" tabindex="0">Explorer</a>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="image/statut.jpg" alt="Œuvres d'art contemporain dans les galeries" width="500" height="350">
+                        <div class="gallery-item-info">
+                            <h3 tabindex="0">Art contemporain (1960 à nos jours)</h3>
+                            <p tabindex="0">Du pop art aux mouvements les plus récents de l'art contemporain.</p>
+                            <a href="#" class="btn-blue" tabindex="0">Explorer</a>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="image/design.jpg" alt="Collection de design et d'objets du quotidien" width="500" height="350">
+                        <div class="gallery-item-info">
+                            <h3 tabindex="0">Design et architecture</h3>
+                            <p tabindex="0">Des objets emblématiques et des projets architecturaux visionnaires.</p>
+                            <a href="#" class="btn-orange" tabindex="0">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Œuvre mise en avant -->
+                <div class="artwork-feature">
+                    <h3 tabindex="0">Œuvre du mois</h3>
+                    <div class="artwork-content">
+                        <img src="image/filerouge.jpg" alt="Composition avec rouge, bleu et jaune, Piet Mondrian, 1930" width="600" height="400">
+                        <div class="artwork-info">
+                            <h4 tabindex="0">Composition avec rouge, bleu et jaune</h4>
+                            <p tabindex="0">Piet Mondrian, 1930</p>
+                            <p class="artwork-description" tabindex="0">Cette œuvre emblématique de Mondrian illustre parfaitement les principes du néoplasticisme qu'il a développés. La composition est basée sur des lignes noires formant une grille asymétrique avec des rectangles blancs et des blocs de couleurs primaires.</p>
+                            <a href="#" class="btn-yellow" tabindex="0">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Architecture -->
+        <section id="architecture" class="section-architecture">
+            <div class="container">
+                <h2 class="section-title-mondrian purple" tabindex="0">Architecture</h2>
+                
+                <div class="architecture-content">
+                    <div class="architecture-images">
+                        <img src="image/architecture.jpg" alt="Vue extérieure du Centre Pompidou avec ses tubes colorés" width="700" height="500" class="main-image">
+                        <div class="mondrian-grid architecture-thumbnails">
+                            <div class="mondrian-cell-1x1">
+                                <img src="image/tube.jpg" alt="Détail des tubes colorés de la façade" width="200" height="150">
+                            </div>
+                            <div class="mondrian-cell-1x1">
+                                <img src="image/escalator.jpg" alt="Vue de l'escalator extérieur" width="200" height="150">
+                            </div>
+                            <div class="mondrian-cell-1x1">
+                                <img src="image/vu_aerienne.jpg" alt="Vue aérienne du bâtiment" width="200" height="150">
+                            </div>
+                            <div class="mondrian-cell-1x1">
+                                <img src="image/vue_interieur.jpg" alt="Vue intérieure du Centre Pompidou" width="200" height="150">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="architecture-description">
+                        <p tabindex="0">Conçu par Renzo Piano et Richard Rogers, le Centre Pompidou est une icône de l'architecture high-tech inaugurée en 1977. Son design révolutionnaire expose à l'extérieur les éléments structurels et techniques habituellement cachés.</p>
+                        
+                        <div class="architecture-features" tabindex="0">
+                            <h3>Caractéristiques architecturales</h3>
+                            <ul>
+                                <li>Structure externe apparente</li>
+                                <li>Code couleur fonctionnel : bleu (air), jaune (électricité), vert (eau), rouge (circulation)</li>
+                                <li>Vastes espaces intérieurs modulables sans colonnes</li>
+                                <li>Façade ouest entièrement vitrée offrant une vue panoramique sur Paris</li>
+                                <li>Escalator extérieur emblématique traversant la façade</li>
+                            </ul>
+                        </div>
+                        
+                        <blockquote tabindex="0">
+                            <p>"Nous voulions créer un joyeux centre urbain, quelque chose de très différent du monument culturel intimidant traditionnel."</p>
+                            <cite>— Richard Rogers</cite>
+                        </blockquote>
+                        
+                        <a href="#" class="btn-purple" tabindex="0">Visites guidées de l'architecture</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Informations pratiques -->
+        <section id="informations" class="section-informations">
+            <div class="container">
+                <h2 class="section-title-mondrian green" tabindex="0">Informations pratiques</h2>
+                
+                <div class="mondrian-grid">
+                    <!-- Billetterie -->
+                    <div class="mondrian-cell-2x1" id="billetterie">
+                        <div class="mondrian-card orange">
+                            <h3 tabindex="0">Billetterie</h3>
+                            <ul>
+                                <li tabindex="0">Plein tarif : 14€</li>
+                                <li tabindex="0">Tarif réduit : 11€</li>
+                                <li tabindex="0">Gratuit pour les moins de 18 ans</li>
+                                <li tabindex="0">Gratuit pour les 18-25 ans (UE)</li>
+                            </ul>
+                            <h4 tabindex="0">Horaires</h4>
+                            <table class="mondrian-table" aria-describedby="horaires-description">
+                                <caption class="sr-only">Horaires d'ouverture du Centre Pompidou</caption>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" tabindex="0">Lundi</th>
+                                        <td tabindex="0">Fermé</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" tabindex="0">Mardi à dimanche</th>
+                                        <td tabindex="0">11h - 21h</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" tabindex="0">Jeudi</th>
+                                        <td tabindex="0">11h - 23h</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="horaires-description" class="sr-only">Tableau présentant les horaires d'ouverture du Centre Pompidou pour chaque jour de la semaine</div>
+                            <div class="billets-actions">
+                                <a href="#" class="btn-primary" tabindex="0">Réserver</a>
+                                <a href="#" class="btn-outline" tabindex="0">Offres groupes</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Accès simplifié -->
+                    <div class="mondrian-cell-2x1">
+                        <div class="mondrian-card blue">
+                            <h3 tabindex="0">Accès</h3>
+                            <address tabindex="0">
+                                Centre Pompidou<br>
+                                Place Georges-Pompidou<br>
+                                75004 Paris
+                            </address>
+                            
+                            <div class="transport-options">
+                                <p tabindex="0"><strong>Métro :</strong> Rambuteau (11), Hôtel de Ville (1, 11), Châtelet (1, 4, 7, 11, 14)</p>
+                                <p tabindex="0"><strong>RER :</strong> Châtelet-Les Halles (A, B, D)</p>
+                                <p tabindex="0"><strong>Bus :</strong> 29, 38, 47, 75</p>
+                            </div>
+                            
+                            <a href="#" class="btn-yellow" tabindex="0">Plan d'accès</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Accessibilité -->
+                    <div class="mondrian-cell-2x1" id="accessibilite">
+                        <div class="mondrian-card purple">
+                            <h3 tabindex="0">Accessibilité</h3>
+                            <p tabindex="0">Le Centre Pompidou s'engage à rendre l'art et la culture accessibles à tous les publics.</p>
+                            <ul>
+                                <li tabindex="0">Entrée accessible par la Piazza</li>
+                                <li tabindex="0">Ascenseurs desservant tous les niveaux</li>
+                                <li tabindex="0">Toilettes adaptées à chaque étage</li>
+                                <li tabindex="0">Visites en LSF et dispositifs tactiles disponibles</li>
+                                <li tabindex="0">Boucles magnétiques pour les personnes malentendantes</li>
+                                <li tabindex="0">Documents en grands caractères et en braille</li>
+                            </ul>
+                            <a href="#" class="btn-purple" tabindex="0">Plus d'informations</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Visite en groupe -->
+                    <div class="mondrian-cell-2x1">
+                        <div class="mondrian-card green">
+                            <h3 tabindex="0">Visites en groupe</h3>
+                            <p tabindex="0">Découvrez le Centre Pompidou à travers des visites guidées adaptées à tous les publics :</p>
+                            <ul>
+                                <li tabindex="0">Visites guidées des collections (60 min)</li>
+                                <li tabindex="0">Parcours thématiques (90 min)</li>
+                                <li tabindex="0">Visites familles et enfants</li>
+                                <li tabindex="0">Visites adaptées en fonction des handicaps</li>
+                                <li tabindex="0">Visites en langues étrangères</li>
+                            </ul>
+                            <a href="#" class="btn-green" tabindex="0">Réserver une visite</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section Programme culturel -->
+        <section id="programme" class="section-programme">
+            <div class="container">
+                <h2 class="section-title-mondrian orange" tabindex="0">Programme culturel</h2>
+                
+                <div class="mondrian-grid">
+                    <div class="mondrian-cell-2x1">
+                        <div class="mondrian-card yellow">
+                            <h3 tabindex="0">Conférences</h3>
+                            <p tabindex="0">Cycle de conférences sur l'art moderne et contemporain par des historiens d'art et des conservateurs.</p>
+                            <p class="date">Tous les mardis à 19h</p>
+                            <a href="#" class="btn-yellow" tabindex="0">Programme</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mondrian-cell-2x1">
+                        <div class="mondrian-card red">
+                            <h3 tabindex="0">Ateliers créatifs</h3>
+                            <p tabindex="0">Ateliers de pratique artistique pour tous les âges, inspirés par les œuvres présentées dans les expositions.</p>
+                            <p class="date">Mercredis et week-ends</p>
+                            <a href="#" class="btn-primary" tabindex="0">S'inscrire</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mondrian-cell-2x1">
+                        <div class="mondrian-card blue">
+                            <h3 tabindex="0">Cinéma</h3>
+                            <p tabindex="0">Projections de films expérimentaux et documentaires sur l'art contemporain.</p>
+                            <p class="date">Programme mensuel</p>
+                            <a href="#" class="btn-blue" tabindex="0">Voir les séances</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mondrian-cell-2x1">
+                        <div class="mondrian-card purple">
+                            <h3 tabindex="0">Performances</h3>
+                            <p tabindex="0">Danse contemporaine, performances artistiques et expériences immersives dans les espaces du musée.</p>
+                            <p class="date">Événements ponctuels</p>
+                            <a href="#" class="btn-purple" tabindex="0">Calendrier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-mondrian-grid">
+                <div class="footer-block">
+                    <h3 tabindex="0">Centre Pompidou</h3>
+                    <address tabindex="0">
+                        Place Georges-Pompidou<br>
+                        75004 Paris<br>
+                        <a href="tel:+33144781233" tabindex="0">01 44 78 12 33</a>
+                    </address>
+                </div>
+                
+                <div class="footer-block">
+                    <h3 tabindex="0">Liens rapides</h3>
+                    <ul>
+                        <li><a href="#expositions" tabindex="0">Expositions</a></li>
+                        <li><a href="#collections" tabindex="0">Collections</a></li>
+                        <li><a href="#architecture" tabindex="0">Architecture</a></li>
+                        <li><a href="#billetterie" tabindex="0">Billetterie</a></li>
+                        <li><a href="#programme" tabindex="0">Programme culturel</a></li>
+                        <li><a href="#accessibilite" tabindex="0">Accessibilité</a></li>
+                        <li><a href="contact.html" tabindex="0">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-block">
+                    <h3 tabindex="0">Ressources</h3>
+                    <ul>
+                        <li><a href="#" tabindex="0">Espace presse</a></li>
+                        <li><a href="#" tabindex="0">Mentions légales</a></li>
+                        <li><a href="#" tabindex="0">Politique de confidentialité</a></li>
+                        <li><a href="#" tabindex="0">Plan du site</a></li>
+                        <li><a href="#" tabindex="0">Recrutement</a></li>
+                        <li><a href="#" tabindex="0">Mécénat et partenariats</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-block">
+                    <h3 tabindex="0">Suivez-nous</h3>
+                    <ul class="social-links">
+                        <li><a href="#" aria-label="Centre Pompidou sur Instagram" tabindex="0">Instagram</a></li>
+                        <li><a href="#" aria-label="Centre Pompidou sur Facebook" tabindex="0">Facebook</a></li>
+                        <li><a href="#" aria-label="Centre Pompidou sur Twitter" tabindex="0">Twitter</a></li>
+                        <li><a href="#" aria-label="Centre Pompidou sur YouTube" tabindex="0">YouTube</a></li>
+                    </ul>
+                    
+                    <h3 tabindex="0" class="mt-lg">Newsletter</h3>
+                    <p tabindex="0">Recevez notre programme d'expositions et d'événements</p>
+                    <form class="newsletter-form">
+                        <label for="email" class="sr-only">Votre email</label>
+                        <input type="email" id="email" placeholder="Votre email" required aria-required="true">
+                        <button type="submit" class="btn-primary">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p tabindex="0">&copy; 2025 Centre Pompidou - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Retour au sommet de la page -->
+    <a href="#top" class="back-to-top" aria-label="Retour en haut de la page" tabindex="0">
+        <span aria-hidden="true" class="arrow-up-icon"></span>
+    </a>
+    
+    <!-- Script pour l'accessibilité et les animations -->
+    <script src="script.js"></script>
+    
+    <!-- Script spécifique pour les nouvelles fonctionnalités -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMain = document.getElementById('nav-main');
+        
+        if (menuToggle && navMain) {
+            menuToggle.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !expanded);
+                navMain.classList.toggle('is-open');
+            });
+        }
+        
+        // Back to top button visibility
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        if (backToTopButton) {
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('is-visible');
+                } else {
+                    backToTopButton.classList.remove('is-visible');
+                }
+            });
+        }
+        
+        // Préfération de réduction de mouvement
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        
+        if (prefersReducedMotion.matches) {
+            document.documentElement.classList.add('reduced-motion');
+        }
+        
+        // Animation des éléments Mondrian
+        const mondrianGrids = document.querySelectorAll('.mondrian-grid, .hero-mondrian-bg');
+        
+        mondrianGrids.forEach(grid => {
+            // Ajouter des couleurs supplémentaires pour certaines cellules
+            const cells = grid.querySelectorAll('.mondrian-cell');
+            cells.forEach((cell, index) => {
+                // Distribuer aléatoirement mais de manière cohérente les nouvelles couleurs
+                if (!cell.classList.contains('red') && !cell.classList.contains('blue') && 
+                    !cell.classList.contains('yellow') && !cell.classList.contains('purple') && 
+                    !cell.classList.contains('green') && !cell.classList.contains('orange')) {
+                    if (index % 17 === 5) {
+                        cell.classList.add('purple');
+                    } else if (index % 13 === 7) {
+                        cell.classList.add('green');
+                    } else if (index % 11 === 3) {
+                        cell.classList.add('orange');
+                    }
+                }
+            });
+        });
+        
+        // Améliorer l'accessibilité des éléments focusables
+        const focusableElements = document.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        
+        focusableElements.forEach(element => {
+            element.addEventListener('focus', function() {
+                // Ajouter une classe pour les styles focus supplémentaires si nécessaire
+                this.parentElement.classList.add('focus-within');
+            });
+            
+            element.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focus-within');
+            });
+        });
+    });
+    </script>
+</body>
+</html>
